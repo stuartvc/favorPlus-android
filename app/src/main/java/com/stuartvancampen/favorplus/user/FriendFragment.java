@@ -3,6 +3,8 @@ package com.stuartvancampen.favorplus.user;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stuartvancampen.favorplus.R;
+import com.stuartvancampen.favorplus.transaction.CreateTransactionDialogFragment;
+import com.stuartvancampen.favorplus.transaction.Transaction;
+import com.stuartvancampen.favorplus.transaction.TransactionList;
+import com.stuartvancampen.favorplus.transaction.TransactionViewActivity;
+import com.stuartvancampen.favorplus.transaction.TransactionsAdapter;
 import com.stuartvancampen.favorplus.util.BaseFragment;
+import com.stuartvancampen.favorplus.util.MyAdapter;
+import com.stuartvancampen.favorplus.util.MyFragment;
+import com.stuartvancampen.favorplus.util.MyLoader;
 
 /**
  * Created by stuart on 1/11/16.
  */
-public class FriendFragment extends BaseFragment {
+public class FriendFragment extends MyFragment<Transaction, TransactionList> {
     public static final String TAG = FriendFragment.class.getSimpleName();
 
     private static final String EXTRA_USER = "user";
@@ -53,17 +63,41 @@ public class FriendFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.friend_profile_layout, container, false);
 
         TextView name = (TextView) view.findViewById(R.id.user_name);
-        name.setText(mUser.getName());
+        name.setText(mUser.getFirstName());
 
         TextView oweOneButton = (TextView) view.findViewById(R.id.owe_one_button);
         oweOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO you owe me one
-                Toast.makeText(FriendFragment.this.getContext(), mUser.getName() + " owes you one!", Toast.LENGTH_SHORT).show();
+                new CreateTransactionDialogFragment().show(getFragmentManager(), mUser);
             }
         });
 
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.transaction_list_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(mAdapter);
+
         return view;
+    }
+
+    @Override
+    public MyLoader createLoader() {
+        return new MyLoader<>(getActivity(), mAdapter, TransactionList.class);
+    }
+
+    @Override
+    public MyAdapter createAdapter() {
+        return new TransactionsAdapter(this);
+    }
+
+    @Override
+    public String getUrlPath() {
+        return getString(R.string.users_url) + mUser.getId() + "/" + getString(R.string.transaction_url);
+    }
+
+    @Override
+    public void OnItemClickListener(View view, int position) {
+        Log.d(TAG, "onClick, position:" + position);
+        //getActivity().startActivity(TransactionViewActivity.create(getActivity(), ((TransactionsAdapter) mAdapter).getItem(position)));
     }
 }

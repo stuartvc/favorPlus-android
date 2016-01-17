@@ -2,31 +2,41 @@ package com.stuartvancampen.favorplus.maindrawer;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.stuartvancampen.favorplus.R;
 import com.stuartvancampen.favorplus.background.AsyncJsonHTTPTask;
 import com.stuartvancampen.favorplus.background.FragmentAsyncTaskCallbacks;
+import com.stuartvancampen.favorplus.transaction.Transaction;
 import com.stuartvancampen.favorplus.user.FriendFragment;
 import com.stuartvancampen.favorplus.user.User;
 import com.stuartvancampen.favorplus.user.UserList;
 import com.stuartvancampen.favorplus.util.MyActivity;
+import com.stuartvancampen.favorplus.util.SerializableObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskCallbacks<UserList> {
+public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskCallbacks<SerializableObject> {
 
+    private static final String TAG = MainDrawerActivity.class.getSimpleName();
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ArrayAdapter<String> mFriendNameAdapter;
-
-    private CharSequence mTitle;
     private UserList mUserList;
+
+    public static Intent create(Context context) {
+        return new Intent(context, MainDrawerActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,7 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // Set the adapter for the list view
-        mFriendNameAdapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item);
+        mFriendNameAdapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, R.id.friend_name);
         mDrawerList.setAdapter(mFriendNameAdapter);
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -64,8 +74,22 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
     }
 
     @Override
-    public void onPostExecute(UserList result) {
-        //TODO add to adapter
+    public void onPostExecute(SerializableObject result) {
+        if (result instanceof UserList) {
+            mUserList = (UserList)result;
+            List<String> friendsNames = new ArrayList<>();
+
+            for (User friend : mUserList) {
+                friendsNames.add(friend.getFirstName());
+            }
+
+            mFriendNameAdapter.addAll(friendsNames);
+        }
+        else if (result instanceof Transaction) {
+            Transaction transaction = (Transaction) result;
+            Log.d(TAG, transaction.toString());
+            Toast.makeText(MainDrawerActivity.this, "transaction: " + transaction.toString() , Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
@@ -87,14 +111,14 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
 
             // Highlight the selected item, update the title, and close the drawer
             mDrawerList.setItemChecked(position, true);
-            setTitle(mUserList.get(position).getName());
+            setTitle(mUserList.get(position).getFirstName());
             mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
 
-    @Override
+    /*@Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         getActionBar().setTitle(mTitle);
-    }
+    }*/
 }

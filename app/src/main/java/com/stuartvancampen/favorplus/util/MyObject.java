@@ -46,7 +46,9 @@ public abstract class MyObject implements SerializableObject {
 
     protected static void addIfNotNull(JSONObject jsonObject, String tag, SerializableObject value) {
         try {
-            jsonObject.put(tag, value.loadToJson());
+            if (value != null) {
+                jsonObject.put(tag, value.loadToJson());
+            }
         } catch (JSONException e) {
             Log.d(TAG, "tag is null");
         }

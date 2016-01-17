@@ -8,10 +8,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.stuartvancampen.favorplus.R;
 import com.stuartvancampen.favorplus.background.FragmentAsyncTask;
 import com.stuartvancampen.favorplus.background.TaskFragment;
+import com.stuartvancampen.favorplus.login.LoginActivity;
+import com.stuartvancampen.favorplus.session.AuthPreferences;
 
 /**
  * Created by Stuart on 13/10/2015.
@@ -88,7 +92,7 @@ public abstract class MyActivity extends AppCompatActivity {
     }
 
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -119,5 +123,5 @@ public abstract class MyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }

@@ -21,7 +21,16 @@
         android:padding="12dp"
         android:background="@android:color/holo_green_light"
         android:textSize="18sp"
-        android:text="You Owe Me One!"
+        android:text="@string/i_owe_you_one"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/transaction_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/owe_one_button"
+        android:layout_marginTop="24dp"
         />
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stuartvancampen.favorplus.R;
+import com.stuartvancampen.favorplus.maindrawer.MainDrawerActivity;
 import com.stuartvancampen.favorplus.session.Session;
 import com.stuartvancampen.favorplus.util.BaseFragment;
 
@@ -81,6 +82,7 @@ public class LoginFragment extends BaseFragment implements OnLoginCallback {
     private void logInSuccess() {
         //getActivity().startActivity(PostsActivity.create(getActivity()));
         //TODO start app
+        getActivity().startActivity(MainDrawerActivity.create(getActivity()));
         getActivity().finish();
     }
 

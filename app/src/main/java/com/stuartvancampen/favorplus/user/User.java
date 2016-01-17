@@ -15,11 +15,13 @@ import java.io.IOException;
 public class User extends MyObject {
     private static final String ROOT_JSON = "user";
 
-    private static final String NAME = "name";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastName";
     private static final String EMAIL = "email";
     private static final String ID = "id";
 
-    private String mName;
+    private String mFirstName;
+    private String mLastName;
     private String mEmail;
     private Long mId;
 
@@ -47,8 +49,11 @@ public class User extends MyObject {
             else if (reader.peek() == JsonToken.NULL) {
                 reader.skipValue();
             }
-            else if (name.equals(NAME)) {
-                mName = reader.nextString();
+            else if (name.equals(FIRST_NAME)) {
+                mFirstName = reader.nextString();
+            }
+            else if (name.equals(LAST_NAME)) {
+                mLastName = reader.nextString();
             }
             else if (name.equals(EMAIL)) {
                 mEmail = reader.nextString();
@@ -66,7 +71,8 @@ public class User extends MyObject {
     @Override
     public JSONObject loadToJson() {
         JSONObject user = new JSONObject();
-        addIfNotNull(user, NAME, String.valueOf(mName));
+        addIfNotNull(user, LAST_NAME, String.valueOf(mLastName));
+        addIfNotNull(user, FIRST_NAME, String.valueOf(mFirstName));
         addIfNotNull(user, EMAIL, String.valueOf(mEmail));
         addIfNotNull(user, ID, String.valueOf(mId));
         return user;
@@ -75,10 +81,6 @@ public class User extends MyObject {
     @Override
     public String getRootJson() {
         return ROOT_JSON;
-    }
-
-    public String getName() {
-        return mName == null ? "" : mName;
     }
 
     public String getEmail() {
@@ -94,5 +96,13 @@ public class User extends MyObject {
         return (o != null &&
                 o instanceof User &&
                 ((User) o).mId.equals(mId));
+    }
+
+    public String getFirstName() {
+        return mFirstName;
+    }
+
+    public String getFullName() {
+        return mFirstName + " " + mLastName;
     }
 }
