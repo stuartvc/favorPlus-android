@@ -38,7 +38,19 @@ public abstract class MyObject implements SerializableObject {
 
     protected static void addIfNotNull(JSONObject jsonObject, String tag, String value) {
         try {
-            jsonObject.put(tag, value);
+            if (value != null) {
+                jsonObject.put(tag, value);
+            }
+        } catch (JSONException e) {
+            Log.d(TAG, "tag is null");
+        }
+    }
+
+    protected static void addIfNotNull(JSONObject jsonObject, String tag, Long value) {
+        try {
+            if (value != null) {
+                jsonObject.put(tag, value);
+            }
         } catch (JSONException e) {
             Log.d(TAG, "tag is null");
         }

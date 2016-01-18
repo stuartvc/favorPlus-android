@@ -108,12 +108,12 @@ public class Transaction extends MyObject {
     @Override
     public JSONObject loadToJson() {
         JSONObject user = new JSONObject();
-        addIfNotNull(user, USER_ID, String.valueOf(mUserId));
-        addIfNotNull(user, FRIEND_ID, String.valueOf(mFriendId));
+        addIfNotNull(user, USER_ID, mUserId);
+        addIfNotNull(user, FRIEND_ID, mFriendId);
         addIfNotNull(user, USER, mUser);
         addIfNotNull(user, FRIEND, mFriend);
-        addIfNotNull(user, VALUE, String.valueOf(mValue));
-        addIfNotNull(user, DESCRIPTION, String.valueOf(mDescription));
+        addIfNotNull(user, VALUE, mValue);
+        addIfNotNull(user, DESCRIPTION, mDescription);
         return user;
     }
 

@@ -71,10 +71,10 @@ public class User extends MyObject {
     @Override
     public JSONObject loadToJson() {
         JSONObject user = new JSONObject();
-        addIfNotNull(user, LAST_NAME, String.valueOf(mLastName));
-        addIfNotNull(user, FIRST_NAME, String.valueOf(mFirstName));
-        addIfNotNull(user, EMAIL, String.valueOf(mEmail));
-        addIfNotNull(user, ID, String.valueOf(mId));
+        addIfNotNull(user, LAST_NAME, mLastName);
+        addIfNotNull(user, FIRST_NAME, mFirstName);
+        addIfNotNull(user, EMAIL, mEmail);
+        addIfNotNull(user, ID, mId);
         return user;
     }
 

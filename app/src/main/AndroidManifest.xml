@@ -28,9 +28,16 @@
 
         <activity android:name=".maindrawer.MainDrawerActivity"
             android:label="@string/main_drawer_activity_label"
-            >
+            />
 
-        </activity>
+
+        <activity android:name=".user.UserActivity"
+            android:label="@string/main_drawer_activity_label"
+            />
+
+        <activity android:name=".transaction.TransactionActivity"
+            android:label="@string/main_drawer_activity_label"
+            />
     </application>
 
 </manifest>

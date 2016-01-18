@@ -10,15 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.stuartvancampen.favorplus.R;
 import com.stuartvancampen.favorplus.transaction.CreateTransactionDialogFragment;
 import com.stuartvancampen.favorplus.transaction.Transaction;
+import com.stuartvancampen.favorplus.transaction.TransactionActivity;
 import com.stuartvancampen.favorplus.transaction.TransactionList;
-import com.stuartvancampen.favorplus.transaction.TransactionViewActivity;
 import com.stuartvancampen.favorplus.transaction.TransactionsAdapter;
-import com.stuartvancampen.favorplus.util.BaseFragment;
 import com.stuartvancampen.favorplus.util.MyAdapter;
 import com.stuartvancampen.favorplus.util.MyFragment;
 import com.stuartvancampen.favorplus.util.MyLoader;
@@ -98,6 +96,6 @@ public class FriendFragment extends MyFragment<Transaction, TransactionList> {
     @Override
     public void OnItemClickListener(View view, int position) {
         Log.d(TAG, "onClick, position:" + position);
-        //getActivity().startActivity(TransactionViewActivity.create(getActivity(), ((TransactionsAdapter) mAdapter).getItem(position)));
+        getActivity().startActivity(TransactionActivity.create(getActivity(), ((TransactionsAdapter) mAdapter).getItem(position)));
     }
 }

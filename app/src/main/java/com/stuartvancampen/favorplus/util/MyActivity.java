@@ -20,7 +20,7 @@ import com.stuartvancampen.favorplus.session.AuthPreferences;
 /**
  * Created by Stuart on 13/10/2015.
  */
-public abstract class MyActivity extends AppCompatActivity {
+public class MyActivity extends AppCompatActivity {
 
     private static final String TAG_TASK_FRAGMENT = "task_fragment_";
     private static final String TAG = MyActivity.class.getSimpleName();
