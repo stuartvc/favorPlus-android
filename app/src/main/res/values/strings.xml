@@ -28,4 +28,8 @@
     <string name="action_settings">settings</string>
     <string name="logout">logout</string>
     <string name="owes"> owes </string>
+    <string name="home_url">home/</string>
+    <string name="friendship_list_url">friendships</string>
+    <string name="action_add_friend">Add Friend</string>
+    <string name="action_add_favor">New Favor</string>
 </resources>

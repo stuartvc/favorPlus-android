@@ -16,6 +16,9 @@ import com.stuartvancampen.favorplus.background.FragmentAsyncTask;
 import com.stuartvancampen.favorplus.background.TaskFragment;
 import com.stuartvancampen.favorplus.login.LoginActivity;
 import com.stuartvancampen.favorplus.session.AuthPreferences;
+import com.stuartvancampen.favorplus.session.Session;
+import com.stuartvancampen.favorplus.transaction.CreateTransactionDialogFragment;
+import com.stuartvancampen.favorplus.transaction.NewTransactionDialogFragment;
 
 /**
  * Created by Stuart on 13/10/2015.
@@ -109,6 +112,11 @@ public class MyActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if (id == R.id.action_add_transaction) {
+            closeOptionsMenu();
+
+            new NewTransactionDialogFragment().show(getFragmentManager(), Session.getInstance().getFriendList());
         }
         else if (id == R.id.menu_logout) {
             closeOptionsMenu();

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.stuartvancampen.favorplus.user.User;
+import com.stuartvancampen.favorplus.user.UserList;
 
 /**
  * Created by Stuart on 15/11/2015.
@@ -20,6 +21,7 @@ public class Session {
 
     private final SharedPreferences mSettings;
     private User mUser;
+    private UserList mFriendList;
     private boolean mIsLoggedIn;
     private static Session mUserSession;
 
@@ -40,6 +42,7 @@ public class Session {
                 mUser = new User(userString);
             }
         }
+        mFriendList = null;
     }
 
     public void doLogin(User user) {
@@ -75,5 +78,13 @@ public class Session {
 
     public boolean isLoggedInUser(User user) {
         return (mUser != null && mUser.equals(user));
+    }
+
+    public void setFriendList(UserList friendList) {
+        mFriendList = friendList;
+    }
+
+    public UserList getFriendList() {
+        return mFriendList;
     }
 }

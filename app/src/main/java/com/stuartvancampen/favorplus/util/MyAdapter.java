@@ -36,7 +36,7 @@ public abstract class MyAdapter<VH extends RecyclerView.ViewHolder, T extends My
             }
             notifyDataSetChanged();
             mFragment.onDataLoaded();
-            Log.d("MyAdapter", "onFinishLoad:");
+            Log.d("MyAdapter", "onFinishLoad, size:" + result.size());
             for (int index = 0; index < result.size(); index++) {
                 Log.d("MyAdapter", "\nitem " + index + ": " + result.get(index).loadToJson().toString());
             }

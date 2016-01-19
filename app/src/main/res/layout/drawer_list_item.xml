@@ -3,10 +3,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/row_icon"
+        android:paddingLeft="4dp"
+        android:src="@drawable/ic_add_white_24dp"/>
+
     <TextView
-        android:id="@+id/friend_name"
+        android:id="@+id/row_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/row_icon"
+        android:paddingLeft="4dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         />
