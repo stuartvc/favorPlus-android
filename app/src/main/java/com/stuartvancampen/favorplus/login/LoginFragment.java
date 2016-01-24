@@ -1,8 +1,10 @@
 package com.stuartvancampen.favorplus.login;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.stuartvancampen.favorplus.util.BaseFragment;
  */
 public class LoginFragment extends BaseFragment implements OnLoginCallback {
 
+    public static final int SIGN_UP_REQUEST_CODE = 101;
     private ProgressDialog mLoadingDialog;
 
     @Override
@@ -59,7 +62,7 @@ public class LoginFragment extends BaseFragment implements OnLoginCallback {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(SignUpActivity.create(getActivity()));
+                getActivity().startActivityForResult(SignUpActivity.create(getActivity()), SIGN_UP_REQUEST_CODE);
             }
         });
 
@@ -67,11 +70,6 @@ public class LoginFragment extends BaseFragment implements OnLoginCallback {
     }
 
     private void login(String email, String password) {
-        Toast.makeText(getActivity(),
-                "email:" + email + ", password:" + password,
-                Toast.LENGTH_LONG)
-             .show();
-
         mLoadingDialog = new ProgressDialog(getActivity());
         mLoadingDialog.setMessage("Loading...");
         mLoadingDialog.show();
@@ -87,7 +85,7 @@ public class LoginFragment extends BaseFragment implements OnLoginCallback {
     }
 
     @Override
-    public void onLoginComplete(boolean success) {
+    public void onLoginComplete(boolean success, boolean userInitiated) {
         if (mLoadingDialog != null) {
             mLoadingDialog.dismiss();
         }
@@ -95,7 +93,9 @@ public class LoginFragment extends BaseFragment implements OnLoginCallback {
             logInSuccess();
         }
         else {
-            Toast.makeText(getActivity(), R.string.authentication_error, Toast.LENGTH_LONG).show();
+            if (userInitiated) {
+                Toast.makeText(getActivity(), R.string.authentication_error, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

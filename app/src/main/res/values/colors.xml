@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="favorPlus_colorPrimary">#5874A6</color>
+    <color name="favorPlus_colorPrimaryDark">#436095</color>
+    <color name="favorPlus_colorAccent">#B26361</color>
+    <color name="favorPlus_grey">#615c60</color>
+    <color name="favorPlus_darkGrey">#413C40</color>
+    <color name="favorPlus_lightGrey">#807B7F</color>
+    <color name="favorPlus_lighterGrey">#A39EA2</color>
 </resources>

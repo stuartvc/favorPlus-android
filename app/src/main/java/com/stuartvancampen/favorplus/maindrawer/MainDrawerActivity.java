@@ -1,11 +1,13 @@
 package com.stuartvancampen.favorplus.maindrawer;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,8 +21,11 @@ import android.widget.Toast;
 import com.stuartvancampen.favorplus.R;
 import com.stuartvancampen.favorplus.background.AsyncJsonHTTPTask;
 import com.stuartvancampen.favorplus.background.FragmentAsyncTaskCallbacks;
+import com.stuartvancampen.favorplus.friendships.Friendship;
 import com.stuartvancampen.favorplus.session.Session;
+import com.stuartvancampen.favorplus.transaction.NewTransactionDialogFragment;
 import com.stuartvancampen.favorplus.transaction.Transaction;
+import com.stuartvancampen.favorplus.user.AddFriendDialogFragment;
 import com.stuartvancampen.favorplus.user.FriendFragment;
 import com.stuartvancampen.favorplus.user.User;
 import com.stuartvancampen.favorplus.user.UserList;
@@ -42,7 +47,9 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
     private LinearLayoutManager mLayoutManager;
 
     public static Intent create(Context context) {
-        return new Intent(context, MainDrawerActivity.class);
+        Intent startIntent = new Intent(context, MainDrawerActivity.class);
+        startIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        return startIntent;
     }
 
     @Override
@@ -104,7 +111,11 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
         else if (result instanceof Transaction) {
             Transaction transaction = (Transaction) result;
             Log.d(TAG, transaction.toString());
-            Toast.makeText(MainDrawerActivity.this, "transaction: " + transaction.toString() , Toast.LENGTH_SHORT).show();
+        }
+        else if (result instanceof Friendship) {
+            Friendship friendship = (Friendship) result;
+            Log.d(TAG, friendship.toString());
+            mFriendNameAdapter.addFriend(friendship.getFriend());
         }
     }
 
@@ -119,8 +130,10 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
             setTitle("Favor Plus");
         }
         else if (position == DrawerItemVH.ITEM_TYPE_ADD_CONTACT) {
+            new AddFriendDialogFragment().show(getFragmentManager());
         }
         else if (position == DrawerItemVH.ITEM_TYPE_NEW_TRANSACTION) {
+            new NewTransactionDialogFragment().show(getFragmentManager(), Session.getInstance().getFriendList());
         }
         else if (position == DrawerItemVH.ITEM_TYPE_SUB_HEADER) {
             //Nothing
@@ -199,4 +212,5 @@ public class MainDrawerActivity extends MyActivity implements FragmentAsyncTaskC
         mTitle = title;
         getActionBar().setTitle(mTitle);
     }*/
+
 }

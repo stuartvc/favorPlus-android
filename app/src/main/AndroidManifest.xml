@@ -6,13 +6,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_favorite_add_gradient_48dp"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".session.FavorPlusApplication">
         <activity
-            android:name=".login.LoginActivity">
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,21 +24,25 @@
 
         <activity android:name=".login.SignUpActivity"
             android:label="@string/sign_up_activity_label"
+            android:screenOrientation="portrait"
             >
 
         </activity>
 
         <activity android:name=".maindrawer.MainDrawerActivity"
             android:label="@string/main_drawer_activity_label"
+            android:screenOrientation="portrait"
             />
 
 
         <activity android:name=".user.UserActivity"
             android:label="@string/main_drawer_activity_label"
+            android:screenOrientation="portrait"
             />
 
         <activity android:name=".transaction.TransactionActivity"
             android:label="@string/main_drawer_activity_label"
+            android:screenOrientation="portrait"
             />
     </application>
 

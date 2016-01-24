@@ -2,14 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_add_transaction"
-        android:title="@string/action_add_favor"
+        android:title="@string/add_favor"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_add_white_24dp"
+        android:icon="@drawable/ic_favorite_add_white_48dp"
         />
-    <item android:id="@+id/action_settings"
+    <!--<item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        /> -->
     <item android:id="@+id/menu_logout"
         android:title="@string/logout"
         app:showAsAction="never"

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.stuartvancampen.favorplus.R;
 import com.stuartvancampen.favorplus.background.FragmentAsyncTask;
+import com.stuartvancampen.favorplus.background.FragmentAsyncTaskCallbacks;
 import com.stuartvancampen.favorplus.background.TaskFragment;
 import com.stuartvancampen.favorplus.login.LoginActivity;
 import com.stuartvancampen.favorplus.session.AuthPreferences;
@@ -23,7 +24,7 @@ import com.stuartvancampen.favorplus.transaction.NewTransactionDialogFragment;
 /**
  * Created by Stuart on 13/10/2015.
  */
-public class MyActivity extends AppCompatActivity {
+public class MyActivity extends AppCompatActivity implements FragmentAsyncTaskCallbacks<SerializableObject> {
 
     private static final String TAG_TASK_FRAGMENT = "task_fragment_";
     private static final String TAG = MyActivity.class.getSimpleName();
@@ -110,10 +111,10 @@ public class MyActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
         }
-        else if (id == R.id.action_add_transaction) {
+        else */if (id == R.id.action_add_transaction) {
             closeOptionsMenu();
 
             new NewTransactionDialogFragment().show(getFragmentManager(), Session.getInstance().getFriendList());
@@ -131,5 +132,25 @@ public class MyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPreExecute() {
+
+    }
+
+    @Override
+    public void onProgressUpdate(int percent) {
+
+    }
+
+    @Override
+    public void onCancelled() {
+
+    }
+
+    @Override
+    public void onPostExecute(SerializableObject result) {
+
     }
 }

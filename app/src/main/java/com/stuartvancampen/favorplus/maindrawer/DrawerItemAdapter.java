@@ -68,19 +68,19 @@ public class DrawerItemAdapter extends RecyclerView.Adapter<DrawerItemVH> {
         if (position == DrawerItemVH.ITEM_TYPE_HEADER) {
         }
         else if (position == DrawerItemVH.ITEM_TYPE_HOME) {
-            holder.mRowName.setText("Home");
+            holder.mRowName.setText(R.string.home);
             holder.mImageView.setImageResource(R.drawable.ic_home_white_24dp);
         }
         else if (position == DrawerItemVH.ITEM_TYPE_ADD_CONTACT) {
-            holder.mRowName.setText("Add Contact");
+            holder.mRowName.setText(R.string.add_friend);
             holder.mImageView.setImageResource(R.drawable.ic_person_add_white_24dp);
         }
         else if (position == DrawerItemVH.ITEM_TYPE_NEW_TRANSACTION) {
-            holder.mRowName.setText("New Transaction");
-            holder.mImageView.setImageResource(R.drawable.ic_favorite_white_24dp);
+            holder.mRowName.setText(R.string.add_favor);
+            holder.mImageView.setImageResource(R.drawable.ic_favorite_add_white_48dp);
         }
         else if (position == DrawerItemVH.ITEM_TYPE_SUB_HEADER) {
-            holder.mRowName.setText("Friends");
+            holder.mRowName.setText(R.string.friends);
         }
         else if (position >= DrawerItemVH.ITEM_TYPE_FRIEND) {
             User user = getItem(position - DrawerItemVH.ITEM_TYPE_FRIEND);
@@ -114,6 +114,11 @@ public class DrawerItemAdapter extends RecyclerView.Adapter<DrawerItemVH> {
     @Override
     public int getItemCount() {
         return DrawerItemVH.ITEM_TYPE_FRIEND + ((mList == null) ? 0 : mList.size());
+    }
+
+    public void addFriend(User friend) {
+        mList.add(friend);
+        notifyDataSetChanged();
     }
 
     /*@Override

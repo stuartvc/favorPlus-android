@@ -103,6 +103,6 @@ public class User extends MyObject {
     }
 
     public String getFullName() {
-        return mFirstName + " " + mLastName;
+        return mFirstName + (mLastName != null ? "" + mLastName : "");
     }
 }

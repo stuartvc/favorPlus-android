@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.stuartvancampen.favorplus.friendships.FriendshipList;
 import com.stuartvancampen.favorplus.user.User;
 import com.stuartvancampen.favorplus.user.UserList;
 
@@ -42,7 +43,7 @@ public class Session {
                 mUser = new User(userString);
             }
         }
-        mFriendList = null;
+        mFriendList = new UserList();
     }
 
     public void doLogin(User user) {

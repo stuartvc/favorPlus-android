@@ -9,7 +9,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
-    <string name="authentication_error">Authentication Error</string>
+    <string name="authentication_error">Error: email or password incorrect</string>
     <string name="users_url">users/</string>
     <string name="please_login_message">Please Login</string>
     <string name="login">Login</string>
@@ -30,6 +30,12 @@
     <string name="owes"> owes </string>
     <string name="home_url">home/</string>
     <string name="friendship_list_url">friendships</string>
-    <string name="action_add_friend">Add Friend</string>
-    <string name="action_add_favor">New Favor</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="add_favor">New Favor</string>
+    <string name="enter_email">Enter friends email address</string>
+    <string name="create_friendship_url">friendships/</string>
+    <string name="friends">Friends</string>
+    <string name="home">Home</string>
+    <string name="navigation_drawer_open">open drawer</string>
+    <string name="navigation_drawer_close">close drawer</string>
 </resources>

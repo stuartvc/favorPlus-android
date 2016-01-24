@@ -39,7 +39,7 @@ public class ASyncLoginRequest extends AsyncTask<String, String, JsonReader> {
         String auth_token = AuthPreferences.get().getAuthToken();
         if (auth_token == null) {
             Log.d(TAG, "no auth key in preferencs");
-            listener.onLoginComplete(false);
+            listener.onLoginComplete(false, false);
             this.cancel(true);
             return;
         }
@@ -81,7 +81,7 @@ public class ASyncLoginRequest extends AsyncTask<String, String, JsonReader> {
         String authToken = null;
 
         if (reader == null) {
-            mListener.onLoginComplete(false);
+            mListener.onLoginComplete(false, true);
             return;
         }
 
@@ -126,12 +126,12 @@ public class ASyncLoginRequest extends AsyncTask<String, String, JsonReader> {
                 AuthPreferences.get().setAuthToken(authToken);
             }
 
-            mListener.onLoginComplete(true);
+            mListener.onLoginComplete(true, true);
         }
         else {
             Log.d(TAG, "login attempt failed");
             AuthPreferences.get().clearAuthToken();
-            mListener.onLoginComplete(false);
+            mListener.onLoginComplete(false, true);
         }
     }
 }

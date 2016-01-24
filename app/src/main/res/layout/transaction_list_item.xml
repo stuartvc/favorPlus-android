@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/profile_picture_frame"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        >
+
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_person_outline_grey_48dp"
+            />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/transation_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@+id/profile_picture_frame"
         android:layout_toLeftOf="@+id/transaction_value"
-        android:padding="8dp"
+        android:layout_margin="8dp"
         android:singleLine="true"
         android:ellipsize="end"
         android:textSize="18sp"
@@ -22,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:padding="8dp"
+        android:layout_margin="8dp"
         android:textSize="18sp"
         android:text="1"
         />
@@ -32,13 +54,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/transation_header"
-        android:layout_alignParentLeft="true"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="8dp"
+        android:layout_toRightOf="@+id/profile_picture_frame"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:maxLines="2"
         android:textSize="12sp"
         android:text="description"
         />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/seperator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#615C60"
+        >
+    </FrameLayout>
+
+</LinearLayout>

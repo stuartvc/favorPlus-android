@@ -1,36 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/profile_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient"
+        >
+
+    <FrameLayout
+        android:id="@+id/profile_picture_frame"
+        android:layout_width="@dimen/profile_picture_size"
+        android:layout_height="@dimen/profile_picture_size"
+        android:layout_margin="12dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_person_outline_white_48dp"
+            />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/profile_picture_frame"
+        android:layout_marginTop="24dp"
         android:padding="12dp"
-        android:textSize="36sp"
+        android:textSize="24sp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="Stuart Van Campen"
+        android:textColor="@color/favorPlus_darkGrey"
         />
 
     <TextView
         android:id="@+id/owe_one_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/user_name"
-        android:layout_marginTop="36dp"
-        android:padding="12dp"
-        android:background="@android:color/holo_green_light"
-        android:textSize="18sp"
+        android:layout_toRightOf="@+id/profile_picture_frame"
+        android:padding="4dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/login_button"
+        android:textSize="12sp"
+        android:textColor="@color/favorPlus_darkGrey"
         android:text="@string/i_owe_you_one"
         />
 
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/recent_transactions_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_frame"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="Recent Favors"
+        android:textSize="18dp"
+        android:visibility="gone"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/transaction_list_view"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/owe_one_button"
-        android:layout_marginTop="24dp"
+        android:layout_below="@id/recent_transactions_header"
         />
 
 </RelativeLayout>

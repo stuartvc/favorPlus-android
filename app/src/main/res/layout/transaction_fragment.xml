@@ -1,11 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
     <TextView
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/transation_details"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:gravity="center"
+        android:textSize="36sp"
+        android:textColor="@color/favorPlus_darkGrey"
+        android:text="Transaction Details"
         />
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/profile_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <FrameLayout
+            android:id="@+id/profile_picture_frame"
+            android:layout_width="@dimen/profile_picture_size"
+            android:layout_height="@dimen/profile_picture_size"
+            android:layout_margin="12dp"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_person_outline_grey_48dp"
+                />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/transactions_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profile_picture_frame"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:text="Stuart Van Campen"
+            android:textColor="@color/favorPlus_darkGrey"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="12dp"
+        >
+        <TextView
+            android:id="@+id/transaction_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/favorPlus_darkGrey"
+            android:text="Description: "
+            />
+
+        <TextView
+            android:id="@+id/transaction_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/transaction_description"
+            android:textSize="12sp"
+            android:textColor="@color/favorPlus_darkGrey"
+            android:text="15 minutes ago"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="12dp"
+        >
+
+        <TextView
+            android:id="@+id/date_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/favorPlus_darkGrey"
+            android:text="Date Added: "
+            />
+
+        <TextView
+            android:id="@+id/date_created_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/date_created"
+            android:textSize="12sp"
+            android:textColor="@color/favorPlus_darkGrey"
+            android:text="15 minutes ago"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

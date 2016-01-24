@@ -13,7 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stuartvancampen.favorplus.R;
+import com.stuartvancampen.favorplus.maindrawer.MainDrawerActivity;
 import com.stuartvancampen.favorplus.session.AuthPreferences;
+import com.stuartvancampen.favorplus.session.Session;
+import com.stuartvancampen.favorplus.user.User;
 import com.stuartvancampen.favorplus.util.BaseFragment;
 
 import org.json.JSONException;
@@ -35,6 +38,8 @@ import javax.net.ssl.HttpsURLConnection;
 public class SignUpFragment extends BaseFragment {
 
     private static final String TAG = SignUpFragment.class.getSimpleName();
+
+    private User mUser;
 
     @Nullable
     @Override
@@ -59,7 +64,8 @@ public class SignUpFragment extends BaseFragment {
     private void signUpUser(String name, String email, String password) {
 
         HashMap<String, String> newUser = new HashMap<>();
-        newUser.put("name", name);
+        newUser.put("firstName", name);
+        newUser.put("lastName", "");
         newUser.put("email", email);
         newUser.put("password", password);
         JSONObject postBody = new JSONObject();
@@ -68,6 +74,9 @@ public class SignUpFragment extends BaseFragment {
         } catch (JSONException e) {
             Log.d(TAG, "jsonException");
         }
+
+        mUser = new User((new JSONObject(newUser)).toString());
+        Session.getInstance().doLogin(mUser);
 
         new AsyncTask<String, String, String>() {
 
@@ -131,6 +140,9 @@ public class SignUpFragment extends BaseFragment {
 
             //getActivity().startActivity(UsersActivity.create(getActivity()));
             //TODO start app
+            getActivity().startActivity(MainDrawerActivity.create(getActivity()));
+            getActivity().setResult(1);
+            getActivity().finish();
         }
     }
 }

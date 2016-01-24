@@ -3,6 +3,7 @@ package com.stuartvancampen.favorplus.friendships;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stuartvancampen.favorplus.R;
@@ -16,6 +17,7 @@ public class FriendshipVH extends RecyclerView.ViewHolder implements View.OnClic
 
     public TextView mUserName;
     public TextView mTotalFavors;
+    public ImageView mAddFavorIcon;
     private OnItemClickListener mOnItemClickListener;
 
 
@@ -23,6 +25,7 @@ public class FriendshipVH extends RecyclerView.ViewHolder implements View.OnClic
         super(itemView);
         mUserName = (TextView) itemView.findViewById(R.id.user_name);
         mTotalFavors = (TextView) itemView.findViewById(R.id.total_favors_text);
+        mAddFavorIcon = (ImageView) itemView.findViewById(R.id.add_favor_icon);
         itemView.setOnClickListener(this);
     }
 

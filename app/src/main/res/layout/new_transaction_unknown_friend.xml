@@ -79,7 +79,6 @@
         android:layout_alignParentRight="true"
         android:textSize="12sp"
         android:inputType="text"
-        android:text="hello"
         />
 
 

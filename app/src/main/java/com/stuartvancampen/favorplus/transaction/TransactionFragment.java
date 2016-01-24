@@ -41,15 +41,14 @@ public class TransactionFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.transaction_fragment, container, false);
 
-        TextView userName = (TextView) view.findViewById(R.id.user_name);
-        userName.setText(mTransaction.getUser().getFullName());
+        TextView transactionsHeader = (TextView) view.findViewById(R.id.transactions_header);
+        transactionsHeader.setText(mTransaction.getHeaderText());
 
-        userName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().startActivity(UserActivity.create(getActivity(), mTransaction.getUser()));
-            }
-        });
+        TextView transactionsDescription = (TextView) view.findViewById(R.id.transaction_description_text);
+        transactionsDescription.setText(mTransaction.getDescription());
+
+        TextView dateCreated = (TextView) view.findViewById(R.id.date_created_value);
+        dateCreated.setText(mTransaction.getDateString());
 
         return view;
     }

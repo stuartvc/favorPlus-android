@@ -112,4 +112,19 @@ public class Friendship extends MyObject {
     public long getTotalFavors() {
         return (mTransactionTotal != null) ? mTransactionTotal : 0;
     }
+
+    public String getTotalFavorsText() {
+        long totalFavors = getTotalFavors();
+        String friendFullName = mFriend.getFullName();
+        if (totalFavors > 0) {
+            return "You owe " + friendFullName + " " + totalFavors + (totalFavors == 1 ? " favor" : " favors");
+        }
+        else if (totalFavors < 0) {
+            return friendFullName + " owes you " + Math.abs(totalFavors) + (Math.abs(totalFavors) == 1 ? " favor" : " favors");
+        }
+        else {
+            return "You and " + friendFullName + " are even";
+        }
+
+    }
 }

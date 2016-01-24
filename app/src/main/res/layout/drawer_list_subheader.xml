@@ -6,8 +6,8 @@
         android:id="@+id/row_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="4dp"
-        android:textColor="@android:color/darker_gray"
+        android:padding="4dp"
+        android:textColor="@color/favorPlus_lighterGrey"
         android:textSize="18sp"
         />
 </RelativeLayout>

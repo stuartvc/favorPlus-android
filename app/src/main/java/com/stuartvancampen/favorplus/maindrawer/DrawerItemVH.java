@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stuartvancampen.favorplus.R;
+import com.stuartvancampen.favorplus.session.Session;
+import com.stuartvancampen.favorplus.user.User;
 import com.stuartvancampen.favorplus.util.OnItemClickListener;
 
 import java.security.InvalidParameterException;
@@ -33,7 +35,11 @@ public class DrawerItemVH extends RecyclerView.ViewHolder implements View.OnClic
     public DrawerItemVH(View itemView, int viewType) {
         super(itemView);
         if (viewType == ITEM_TYPE_HEADER) {
-
+            User user = Session.getInstance().getLoggedInUser();
+            TextView name = (TextView) itemView.findViewById(R.id.name);
+            name.setText(user.getFullName());
+            TextView email = (TextView) itemView.findViewById(R.id.email);
+            email.setText(user.getEmail());
         }
         else if (viewType == ITEM_TYPE_HOME) {
             mRowName = (TextView) itemView.findViewById(R.id.row_name);
